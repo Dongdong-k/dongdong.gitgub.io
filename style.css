@@ -1,0 +1,353 @@
+/* CSS reset */
+/* 1. 모든요소, 가상요소에 border-box 설정 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  min-width: 1060px;
+  font-size: 1.8rem;
+  line-height: 1.6;
+  font-family: Roboto, Avenir, sans-serif;
+}
+
+/*a 주소의 밑줄 없애기*/
+a {
+  text-decoration: none;
+}
+
+/*CTA*/
+.cta {
+  color: white;
+  font-weight: 400;
+  display: block; /*기존 a가 인라인 요소로 높이 값을 못주므로 블록 처리*/
+  border-radius: 8px;
+  background: #44b78b;
+}
+
+.cta:hover {
+  background: #51be95;
+}
+
+/* 2. 레이아웃 설정 */
+/********************************************************/
+/* HEADER */
+.header {
+  background: darkgreen;
+  height: 72px;
+  padding: 15px 0 4px;
+}
+
+.container,
+.container-float {
+  max-width: 1400px;
+  margin: 0 auto; /*top right bottom left*/
+  padding: 0 20px; /*좌우 여백 : 20px*/
+  position: relative;
+}
+
+.container-float::after {
+  display: block;
+  content: "";
+  clear: both;
+}
+/*2개 값만 입력시 - 0 auto : top&bottom, left&right*/
+/*               0
+        --------------------
+        |                   |
+  auto  |                   | auto
+        |                   |
+        |                   |
+        --------------------
+                 0
+ */
+
+.logo {
+  margin: 0;
+  position: absolute;
+  padding-left: inherit;
+  top: 0;
+  left: 0;
+}
+
+.nav {
+  text-align: right;
+}
+
+.list {
+  margin: 0;
+  font-size: 0; /*ul 폰트사이즈를 0으로 만들어 너비를 0으로 만들기*/
+}
+
+.list-item {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 1.3rem; /*li요소 폰트 사이즈 지정*/
+  text-transform: uppercase; /*대문자로 변환*/
+}
+
+/*list-time 아래에 있는 a요소만 선택하기*/
+.list-item > a {
+  color: white;
+  display: block;
+  padding: 10px; /*4면 모두 여백 설정*/
+}
+
+/*마우스 올려두면 색깔 변하는 기능
+a:hover 입력시 a :hover 이렇게 띄어쓰기는 안됨*/
+.list-item > a:hover {
+  color: lightgreen;
+}
+
+/********************************************************/
+/* MAIN */
+.main {
+  /* background: lime; */
+}
+
+.hero-section {
+  text-align: center;
+  padding: 50px 0;
+  margin: 0 auto;
+  border-bottom: 1px solid #cfe3dc;
+}
+
+.intro-desc {
+  width: 700px;
+  font-weight: 300;
+  font-size: 3.6rem;
+  margin: 40px auto 50px;
+  line-height: 1.3;
+}
+
+.hero-cta {
+  width: 400px;
+  margin: 0 auto 60px;
+  padding: 20px 50px;
+}
+
+/*float 기능 사용할 경우 부모가 자식의 크기 인지 못하는 문제 발생*/
+.main-content {
+  float: left;
+  width: 70%;
+}
+
+.main-title {
+  font-weight: 400;
+  margin: 40px 0 20px 0;
+  font-size: 3.2rem;
+  letter-spacing: -1px; /*자간조정*/
+}
+
+.main-desc {
+  margin: 0;
+}
+
+.mailing-layout {
+  padding-top: 10px;
+}
+
+.mailing-layout::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.mailing {
+  float: left;
+  width: 48%;
+  margin-right: 2%;
+}
+
+/*mailing 첫번째 요소에만 스타일링*/
+/*메일링 사이에 여백 삽입*/
+/* .mailing:first-child {
+  margin-right: 4%;
+} */
+
+.mailing-title {
+  margin: 0 0 20px 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+.mailing-title > a {
+  color: #44b78b;
+}
+
+.mailing-desc > a {
+  color: #44b78b;
+  font-weight: bold;
+}
+
+.mailing-desc {
+  font-size: 1.2rem;
+}
+
+.mailing-form {
+  margin: 10px 0 30px;
+  position: relative;
+  /*btn 에서 position absolute 적용으로 부모요소 위치 알려주기 위해 relative 적용하기*/
+}
+
+.mailing-form > label {
+  /* label 출력 끄기 */
+  /* display: none; */
+  /* visibility: hidden; */
+  /* 스크린리더 보조기기 사용자들을 위한 방법 */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  /*확대하면 점같은 부분이 있는데 없애는 방법*/
+  margin: -1px; /*-1px 자르기 가능*/
+  clip: rect(0, 0, 0, 0); /*상하좌우 자르기*/
+}
+
+/*속성 선택자 사용*/
+input[type="email"] {
+  width: 100%;
+  border: 1px solid #cfe3dc;
+  border-radius: 4px;
+  height: 5rem;
+  padding: 6px 80px 8px 10px;
+}
+
+.mailing-form-btn {
+  position: absolute; /*input 안에 위치해야하므로 absolute 적용*/
+  top: 30%;
+  right: 10px;
+  border: none;
+  background: transparent; /*투명한 배경*/
+  color: #44b78b;
+  cursor: pointer; /*마우스 위로 올리면 커서 모양 변경*/
+}
+
+.side-content {
+  float: right;
+  width: 30%;
+  margin: 0;
+  padding: 0 0 30px 20px;
+  border-left: 1px solid #cfe3dc;
+}
+
+.side-content a:hover {
+  color: #25c488;
+}
+
+.side-content:hover {
+  color: #25c488;
+}
+
+.container-side-cta {
+  text-align: center;
+}
+
+.side-cta {
+  width: 330px;
+  padding: 16px 24px;
+  cursor: pointer;
+  margin: 40px auto 0;
+}
+
+.cta.side-cta:hover {
+  color: white;
+}
+
+.side-cta em {
+  font-style: normal;
+  color: #c9f0dd;
+}
+
+.more {
+  display: block;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  font-weight: 1000;
+  text-transform: uppercase;
+  color: #20aa76;
+}
+
+.more::after {
+  content: ">";
+}
+
+.infos {
+  margin-bottom: 40px;
+}
+
+.infos-title {
+  font-size: 1.8rem;
+  font-weight: 400;
+  border-bottom: 1px solid #cfe3dc;
+  margin: 3.5rem 0 0 0;
+  padding-bottom: 1rem;
+}
+
+.news-title {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.6rem;
+}
+
+.news-title > a,
+.community-title > a {
+  color: #20aa76;
+}
+
+.news-article {
+  padding: 20px 0;
+}
+
+.news-desc {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.news-meta {
+  margin-top: 1rem;
+  font-size: 1.4rem;
+  color: #859d94;
+}
+
+.news-meta > span {
+  font-weight: 700;
+}
+
+.list-communities {
+  padding: 20px 0;
+  margin: 0;
+}
+
+.community-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.community-title:nth-child(n+2){
+  margin-top: 14px;
+}
+
+.community-desc {
+  font-size: 1.4rem;
+  color: #859d94;
+}
+
+/* CONTENT-INFO */
+/* .content-info {
+  background: green;
+  clear: both; /*float 된 섹션과 분리시키기*/
+}
+
+.links {
+  background: lightgreen;
+}
+
+.footer {
+  background: purple;
+} */
